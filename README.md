@@ -1,2 +1,3 @@
 # PongGame
-python game
+requirment:
+    run this command : pip install pygame
