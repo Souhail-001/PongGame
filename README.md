@@ -18,5 +18,5 @@ pip install pygame
 ```bash
 python3 Pong.py
 ```
-## Demo
+## 🎥 Demo
 ![Pong Demo](assets/pong_Trimmed.gif)
