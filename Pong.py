@@ -166,17 +166,39 @@ def handle_collision(ball, left_paddle, right_paddle):
 class first_game:
     status = True
 
+def maintain_bot(difficulty):
+    win.fill(black)
+    bot_option1 = bot_FONT.render("Press e for easy bot", True, (220,220,220))
+    win.blit(bot_option1, ((W - bot_option1.get_width())//2, H//2 - 30))
+    bot_option2 = bot_FONT.render("Press h for hard bot", True, (220,220,220))
+    win.blit(bot_option2, ((W - bot_option2.get_width())//2, H//2 + bot_option1.get_height() ))
+    pygame.display.update()
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        waiting = False
+                        break
+                    if event.key == pygame.K_h:
+                        waiting = False
+                        difficulty = True
+                        break    
+
 def main():
+    win.fill(black)
     flag = True
-    if first_game.status:
-        bot_option1 = bot_FONT.render("Press e to play vs easy Bot or h for hard bot", True, (220,220,220))
-        win.blit(bot_option1, ((W - bot_option1.get_width())//2, H//2))
-        bot_option2 = bot_FONT.render("Press m for Multiplayer", True, (220,220,220))
-        win.blit(bot_option2, ((W - bot_option2.get_width())//2, H//2 + bot_option1.get_height()+ 20 ))
-        pygame.display.update()
-        waiting = True
-        difficulty = False
-        while waiting:
+    bot_option1 = bot_FONT.render("Press b to play vs Bot", True, (220,220,220))
+    win.blit(bot_option1, ((W - bot_option1.get_width())//2, H//2 -30))
+    bot_option2 = bot_FONT.render("Press m for Multiplayer", True, (220,220,220))
+    win.blit(bot_option2, ((W - bot_option2.get_width())//2, H//2 + bot_option1.get_height() ))
+    pygame.display.update()
+    waiting = True
+    difficulty = False
+    while waiting:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -185,15 +207,12 @@ def main():
                     if event.key == pygame.K_m:
                         waiting = False
                         break
-                    if event.key == pygame.K_e:
+                    if event.key == pygame.K_b:
                         waiting = False
                         flag = False
+                        maintain_bot(difficulty)
                         break
-                    if event.key == pygame.K_h:
-                        waiting = False
-                        difficulty = True
-                        flag = False
-                        break
+
 
     run = True
     paused = False
@@ -294,8 +313,7 @@ def main():
                           left_score = 0
                           right_score = 0
                           main()
-           
-            
+               
     pygame.QUIT
 
 
